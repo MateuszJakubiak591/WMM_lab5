@@ -1,0 +1,4 @@
+Przeplywnosc PNG mono: 4.527873 bit/piksel
+Entropia oryginalu: 7.181571 bit/piksel
+Entropia obrazu roznicowego: 4.480346 bit/piksel
+Srednia entropia pasm DWT: 4.641587 bit/wspolczynnik

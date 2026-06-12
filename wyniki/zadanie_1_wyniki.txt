@@ -1,0 +1,2 @@
+Wymiary: 768 x 512
+Entropia obrazu monochromatycznego: 7.181571 bit/piksel

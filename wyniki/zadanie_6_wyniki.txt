@@ -1,0 +1,8 @@
+Entropia R: 7.404159 bit/piksel
+Entropia G: 7.084266 bit/piksel
+Entropia B: 6.980083 bit/piksel
+Entropia Y: 7.184155 bit/piksel
+Entropia U: 5.315765 bit/piksel
+Entropia V: 5.814318 bit/piksel
+Srednia entropia RGB: 7.156169 bit/piksel
+Srednia entropia YUV: 6.104746 bit/piksel

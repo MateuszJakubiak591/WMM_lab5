@@ -1,0 +1,101 @@
+LABORATORIUM 5 - STATYSTYCZNE WLASCIWOSCI OBRAZOW
+Obrazy testowe: monarch_mono.png i monarch_col.png
+
+ZADANIE 1 - ENTROPIA OBRAZU MONOCHROMATYCZNEGO
+
+Obraz monarch_mono ma wymiary 768 x 512 pikseli.
+Entropia obrazu wynosi 7.181571 bit/piksel.
+
+ZADANIE 2 - OBRAZ ROZNICOWY
+
+Zakres uzyskanych roznic wynosi [-149, 146].
+Entropia obrazu oryginalnego: 7.181571 bit/piksel.
+Entropia obrazu roznicowego: 4.480346 bit/piksel.
+Entropia zmniejszyla sie o 2.701225 bit/piksel.
+
+Histogram obrazu oryginalnego jest rozlozony na duzej czesci zakresu [0, 255].
+Histogram obrazu roznicowego ma wyrazne maksimum w poblizu zera, poniewaz sasiednie
+piksele obrazu sa zwykle podobne. Kodowanie predykcyjne usuwa wiec czesc zaleznosci
+przestrzennych i daje dane o mniejszej entropii, latwiejsze do kompresji.
+
+ZADANIE 3 - TRANSFORMACJA DWT
+
+Entropia pasma LL: 7.163630 bit/wspolczynnik.
+Entropia pasma LH: 3.699399 bit/wspolczynnik.
+Entropia pasma HL: 3.680892 bit/wspolczynnik.
+Entropia pasma HH: 4.022429 bit/wspolczynnik.
+Srednia entropia pasm: 4.641587 bit/wspolczynnik.
+
+Pasmo LL zawiera niskoczestotliwosciowe przyblizenie obrazu i wizualnie przypomina
+pomniejszony oryginal. Z tego powodu ma szeroki histogram i entropie zblizona do
+entropii obrazu wejsciowego. Pasma LH, HL i HH opisuja detale oraz krawedzie. Wiekszosc
+ich wspolczynnikow jest bliska zeru, dlatego histogramy sa waskie i maja znacznie
+mniejsza entropie. Pasma LH i HL maja podobne entropie, natomiast HH ma nieco wieksza
+entropie, co wynika z obecnosci licznych drobnych, wielokierunkowych detali motyla
+i kwiatow. Srednia entropia DWT jest nieco wieksza od entropii obrazu roznicowego,
+ale znacznie mniejsza od entropii oryginalu.
+
+ZADANIE 4 - PRZEPLYWNOSC PNG
+
+Przeplywnosc pliku monarch_mono.png: 4.527873 bit/piksel.
+Entropia obrazu oryginalnego: 7.181571 bit/piksel.
+Entropia obrazu roznicowego: 4.480346 bit/piksel.
+Srednia entropia pasm DWT: 4.641587 bit/wspolczynnik.
+
+Przeplywnosc PNG jest mniejsza od entropii liczonej bezposrednio z histogramu
+oryginalnych pikseli, ale nie oznacza to, ze zaleznosc l_sr >= H jest nieprawdziwa.
+Entropia 7.181571 opisuje kodowanie pojedynczych pikseli bez wykorzystania ich
+zaleznosci przestrzennych. PNG stosuje filtry predykcyjne i koduje bardziej
+skupione wartosci resztowe. Dla takiej reprezentacji przeplywnosc PNG jest nieco
+wieksza od zmierzonej entropii obrazu roznicowego, co jest zgodne z teoria.
+
+ZADANIE 5 - SKLADOWE RGB
+
+Entropia R: 7.404159 bit/piksel.
+Entropia G: 7.084266 bit/piksel.
+Entropia B: 6.980083 bit/piksel.
+Srednia entropia skladowych RGB: 7.156169 bit/piksel.
+
+Najwieksza entropie ma skladowa R, co odpowiada duzemu zroznicowaniu czerwieni
+i pomaranczu w kwiatach, skrzydlach motyla oraz tle. Najmniejsza entropie ma B.
+
+ZADANIE 6 - KONWERSJA RGB DO YUV
+
+Entropia Y: 7.184155 bit/piksel.
+Entropia U: 5.315765 bit/piksel.
+Entropia V: 5.814318 bit/piksel.
+Srednia entropia YUV: 6.104746 bit/piksel.
+
+Tak, entropie skladowych U i V sa wyraznie mniejsze od entropii Y oraz skladowych
+RGB. Luminancja Y zachowuje wiekszosc ksztaltow, krawedzi i drobnych zmian jasnosci.
+Skladowe chrominancji opisuja tylko roznice barwne, ktore w naturalnym obrazie
+zmieniaja sie wolniej i skupiaja sie wokol wartosci odpowiadajacej neutralnej barwie.
+Ta wlasciwosc umozliwia silniejsza kompresje chrominancji, wykorzystywana m.in. w JPEG.
+
+ZADANIE 7 - KRZYWE R-D DLA JPEG
+
+Badany zakres quality 5-100 dal przeplywnosci od 0.231405 do 6.221965 bit/piksel.
+MSE zmniejszylo sie od 268.4560 do 2.2366, a PSNR wzrosl od 23.8421 do 44.6350 dB.
+Wzrost przeplywnosci zmniejsza znieksztalcenia, lecz przy wysokich wartosciach
+quality koszt kolejnej poprawy szybko rosnie.
+
+Subiektywna ocena rekonstrukcji:
+- quality 5-15, R = 0.231-0.398 bit/piksel: jakosc kiepska; silne blokowanie,
+  rozmycie i utrata drobnych szczegolow;
+- quality 20-45, R = 0.464-0.730 bit/piksel: jakosc srednia do dobrej; obraz jest
+  czytelny, ale artefakty pozostaja widoczne na krawedziach i kwiatach;
+- quality 50-75, R = 0.773-1.141 bit/piksel: jakosc bardzo dobra; znieksztalcenia
+  sa niewielkie i zwykle wymagaja uwaznego ogladania;
+- quality 80-100, R = 1.315-6.222 bit/piksel: jakosc doskonala; znieksztalcenia
+  sa praktycznie niewidoczne.
+
+Przeplywnosc kolorowego PNG wynosi 12.536967 bit/piksel. Dla surowego obrazu RGB
+o przeplywnosci 24 bit/piksel odpowiada to stopniowi kompresji okolo 1.91:1.
+JPEG daje stopnie kompresji od okolo 3.86:1 przy quality=100 do okolo 103.71:1
+przy quality=5. JPEG kompresuje wiec znacznie silniej niz PNG, poniewaz dopuszcza
+straty. PNG zachowuje kazdy piksel dokladnie, dlatego wymaga wiekszej przeplywnosci.
+Dla monochromatycznego PNG stopien kompresji wzgledem 8 bit/piksel wynosi okolo
+1.77:1.
+
+Pliki z obrazami, histogramami, krzywymi R-D i pelnymi wynikami liczbowymi znajduja
+sie w katalogu wyniki.

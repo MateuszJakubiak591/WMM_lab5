@@ -1,0 +1,5 @@
+Entropia LL: 7.163630 bit/wspolczynnik
+Entropia LH: 3.699399 bit/wspolczynnik
+Entropia HL: 3.680892 bit/wspolczynnik
+Entropia HH: 4.022429 bit/wspolczynnik
+Srednia entropia pasm DWT: 4.641587 bit/wspolczynnik
